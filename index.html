@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DIY Companion — Lo-Fi Wireframes</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="page-wrap">
+    <div class="page-title">Lo-Fi Wireframes — DIY Companion App</div>
+    <div class="page-subtitle">Tap through screens or use the nav strip below</div>
+
+    <!-- Screen nav strip -->
+    <div class="screen-nav" id="screenNav"></div>
+
+    <!-- Phone shell -->
+    <div class="phone">
+      <div class="status-bar">
+        <span>9:41</span><span>DIY Companion</span><span>●●●</span>
+      </div>
+      <div class="phone-body" id="phoneBody"></div>
+      <div class="tab-bar">
+        <div class="tab-item" data-screen="home">🏠<span>Home</span></div>
+        <div class="tab-item" data-screen="plan_overview">📋<span>Plan</span></div>
+        <div class="tab-item" data-screen="parts_tools">🔧<span>Parts</span></div>
+        <div class="tab-item" data-screen="ask">💬<span>Ask</span></div>
+      </div>
+    </div>
+
+    <!-- Prev/Next buttons -->
+    <div class="pager">
+      <button class="btn btn-secondary" id="btnPrev">← Prev</button>
+      <button class="btn btn-primary" id="btnNext">Next →</button>
+    </div>
+    <div class="pager-label" id="pagerLabel"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SCREEN TEMPLATES (hidden, cloned by JS)
+  ════════════════════════════════════════════ -->
+
+  <!-- 0. HOME -->
+  <template id="tpl-home">
+    <button class="btn btn-primary btn-full btn-large" data-nav="project_input">＋ New Project</button>
+    <div class="section-label" style="margin-top:16px">My Projects</div>
+    <div id="activeProjects"></div>
+    <div class="divider"></div>
+    <div class="collapse-trigger" id="archiveTrigger">
+      <span class="arrow" id="archiveArrow">▸</span>
+      <span class="label-muted">Completed (2)</span>
+    </div>
+    <div id="archiveProjects" class="hidden"></div>
+  </template>
+
+  <!-- 1. PROJECT INPUT -->
+  <template id="tpl-project_input">
+    <div class="section-label">Describe your project</div>
+    <div class="hint-text" style="margin-bottom:10px">What do you need to fix, build or improve?</div>
+    <div class="fake-textarea">e.g. "My bedroom door handle is broken and rattles when I turn it…"</div>
+    <div class="placeholder-box" style="height:80px;margin-bottom:16px">📷  Tap to add photos</div>
+    <div class="section-label">Your skill level</div>
+    <div id="skillOptions" style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px">
+      <div class="skill-option" data-idx="0">Beginner — I've barely held a screwdriver</div>
+      <div class="skill-option" data-idx="1">Handy — I can follow instructions</div>
+      <div class="skill-option" data-idx="2">Confident — I DIY regularly</div>
+      <div class="skill-option skill-other">Other — describe your experience…</div>
+    </div>
+    <button class="btn btn-primary btn-full">Assess my project →</button>
+    <div class="hint-text" style="text-align:center;margin-top:8px;font-size:11px">Casey would describe her broken door handle here. Marcus would paste his climbing-wall project details.</div>
+  </template>
+
+  <!-- 2. ASSESSMENT RESULT -->
+  <template id="tpl-assessment_result">
+    <div class="badge-approved">
+      <div class="badge-approved-title">✓ DIY Approved</div>
+      <div>This project is within your abilities</div>
+    </div>
+    <div class="section-label">Assessment</div>
+    <div class="card-text">Based on your skill level and the task described, this is a straightforward repair. A door handle replacement involves disassembly, purchasing the right part, and reassembly — no specialist tools needed.</div>
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-label">Difficulty</div>
+        <div class="stat-value">Easy</div>
+        <div class="diff-dots">
+          <span class="dot dot-on">●</span><span class="dot">●</span><span class="dot">●</span><span class="dot">●</span><span class="dot">●</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Est. time</div>
+        <div class="stat-value">45 min</div>
+        <div class="stat-sub">3 stages</div>
+      </div>
+    </div>
+    <button class="btn btn-primary btn-full" data-nav="plan_overview">Generate my plan →</button>
+    <div class="divider"></div>
+    <div style="text-align:center"><button class="btn btn-secondary btn-small">Not for me — find a professional</button></div>
+  </template>
+
+  <!-- 3. PLAN OVERVIEW -->
+  <template id="tpl-plan_overview">
+    <div class="section-label">Project Plan</div>
+    <div class="hint-text" style="margin-bottom:10px">Door Handle Replacement — 3 stages</div>
+    <div class="progress-wrap" style="margin-bottom:16px">
+      <div class="progress-track"><div class="progress-fill" style="width:33.3%"></div></div>
+      <span class="progress-label">1/3</span>
+    </div>
+    <div id="stageList"></div>
+    <div class="divider"></div>
+    <button class="btn btn-secondary btn-full" data-nav="parts_tools">🔧 Parts & Tools list</button>
+  </template>
+
+  <!-- 4. PARTS & TOOLS -->
+  <template id="tpl-parts_tools">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+      <div class="section-label" style="margin-bottom:0">Parts & Tools</div>
+      <div style="display:flex;gap:6px">
+        <span class="toggle-icon active" id="toggleLinks">🔗</span>
+        <span class="toggle-icon" id="toggleImages">🖼</span>
+      </div>
+    </div>
+    <div id="partsList"></div>
+    <div class="hint-text" style="text-align:center;margin-top:8px">Marcus would use notes to track borrowing, stock levels and return dates.</div>
+  </template>
+
+  <!-- 5. STAGE DETAIL -->
+  <template id="tpl-stage_detail">
+    <div class="section-label" style="font-size:19px;margin-bottom:4px">Reassemble & Test</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px">
+      <span class="annotation-tag" style="background:#C8E6C9">Stage 3 of 3</span>
+      <span class="annotation-tag">~15 min</span>
+    </div>
+    <!-- Steps -->
+    <div class="step-row">
+      <span class="step-num">1.</span>
+      <div>
+        <div class="step-text">Hold the new latch mechanism with the tongue pointing outward (away from the door edge).</div>
+      </div>
+    </div>
+    <div class="step-row">
+      <span class="step-num">2.</span>
+      <div>
+        <div class="step-text">Slide the latch into the hole in the door edge until the faceplate sits flush.</div>
+        <div class="force-note">💪 Firm push but don't force — if it resists, check alignment before applying more pressure.</div>
+      </div>
+    </div>
+    <div class="step-row" style="border-bottom:none">
+      <span class="step-num">3.</span>
+      <div>
+        <div class="step-text">Mark screw holes with a pencil, pre-drill if needed, then fasten the faceplate screws.</div>
+        <div class="force-note">💪 Tighten screws snug — over-torquing can strip softwood.</div>
+      </div>
+    </div>
+    <!-- Hazards -->
+    <div style="display:flex;justify-content:flex-end;margin-top:8px;margin-bottom:4px">
+      <div class="hazard-trigger" id="hazardTrigger">
+        <span>⚠</span> Potential hazards <span class="arrow" id="hazardArrow">▸</span>
+      </div>
+    </div>
+    <div id="hazardPanel" class="hazard-panel hidden">
+      <div class="hazard-group"><div class="hazard-step-label">Step 1</div><div class="hazard-item">• Ensure latch orientation is correct — reversing it will prevent the door from closing properly.</div></div>
+      <div class="hazard-group"><div class="hazard-step-label">Step 2</div><div class="hazard-item">• Over-forcing a misaligned latch can crack the door edge or strip the bore hole.</div></div>
+      <div class="hazard-group"><div class="hazard-step-label">Step 3</div><div class="hazard-item">• Pre-drill in hardwood to avoid splitting.</div><div class="hazard-item">• Drill bit should be slightly narrower than screw shank.</div></div>
+    </div>
+    <div class="divider"></div>
+    <!-- Ask collapsible -->
+    <div class="collapsible-header" id="askTrigger">
+      <span>💬 Ask a question</span><span class="arrow" id="askArrow">▸</span>
+    </div>
+    <div id="askPanel" class="collapsible-body hidden">
+      <div class="fake-textarea" style="margin-bottom:8px">Describe your issue or question…</div>
+      <div class="placeholder-box" style="height:50px;margin-bottom:8px">📷  Attach photo of problem</div>
+      <button class="btn btn-primary btn-small" data-nav="ask">Submit question →</button>
+      <div class="hint-text" style="margin-top:6px">If the app detects a safety concern, the Safety View will appear.</div>
+    </div>
+    <!-- Checkpoint collapsible -->
+    <div class="collapsible-header collapsible-header--safe" id="checkTrigger" style="margin-top:8px">
+      <span>✓ Checkpoint: Does it look right?</span><span class="arrow" id="checkArrow">▸</span>
+    </div>
+    <div id="checkPanel" class="collapsible-body hidden">
+      <div class="placeholder-box" style="height:50px;margin-bottom:8px">[diagram: latch tongue facing outward]</div>
+      <div class="step-text">The latch tongue should point away from the door. The faceplate should be flush and square.</div>
+      <div style="display:flex;justify-content:space-between;margin-top:10px">
+        <button class="btn btn-secondary btn-small">Yes ✓</button>
+        <button class="btn btn-danger btn-small" data-nav="ask">No — help!</button>
+      </div>
+    </div>
+  </template>
+
+  <!-- 6. SAFETY VIEW -->
+  <template id="tpl-safety_view">
+    <div class="badge-danger">
+      <div style="font-size:28px;margin-bottom:4px">⚠</div>
+      <div class="badge-danger-title">Safety Concern Flagged</div>
+    </div>
+    <div class="card-text"><strong>Improvisation advice:</strong> Modifying joist hangers may reduce their load-bearing rating. Structural connections supporting body weight require correct hardware ratings. <strong>Strongly recommend consulting an engineer or carpenter.</strong></div>
+    <div class="section-label">What would you like to do?</div>
+    <div class="safety-option"><span class="safety-icon">🔍</span><div><div class="safety-opt-title">Link me to experts in my area</div><div class="hint-text">We'll find local pros who can help</div></div></div>
+    <div class="safety-option"><span class="safety-icon">⚡</span><div><div class="safety-opt-title">I understand the risks — show me how</div><div class="hint-text">We'll provide the guide with caveats</div></div></div>
+    <div class="safety-option"><span class="safety-icon">💡</span><div><div class="safety-opt-title">Suggest alternatives</div><div class="hint-text">We'll look for a safer approach</div></div></div>
+    <div class="hint-text" style="text-align:center;margin-top:12px">This is Marcus' scenario: modifying joist hangers for his climbing wall.</div>
+  </template>
+
+  <!-- 7. ASK -->
+  <template id="tpl-ask">
+    <div class="context-bar">Re: <strong>Stage 3 — Reassemble & Test</strong></div>
+    <div class="chat-feed" id="chatFeed">
+      <div class="chat-msg chat-user"><div class="placeholder-box" style="height:44px;margin-bottom:6px;border-color:#90CAF9">📷 attached photo</div><div>The latch won't slide in flush — it's catching on something inside the door edge.</div></div>
+      <div class="chat-msg chat-ai">It looks like there's a small wood burr inside the bore hole from the original install. Try using a chisel or utility knife to carefully pare it flush. You shouldn't need much force — just enough to shave the high spot.</div>
+      <div class="chat-msg chat-user">Done — it slides in now but the faceplate isn't sitting perfectly flat.</div>
+      <div class="chat-msg chat-ai">That's common. You can deepen the mortise slightly with the chisel so the faceplate recesses fully. Score the outline first with a utility knife, then pare thin shavings. A half-millimetre is usually enough.</div>
+    </div>
+    <div class="chat-input-box">
+      <div class="hint-text" style="min-height:32px;margin-bottom:6px">Ask a follow-up…</div>
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <span style="font-size:18px;cursor:pointer">📷</span>
+        <button class="btn btn-primary btn-small">Send →</button>
+      </div>
+    </div>
+    <div class="end-chat-btn" data-nav="stage_detail">
+      <div style="font-weight:700">✕ End chat &amp; return</div>
+      <div class="hint-text" style="margin-top:2px">Your stage view will refresh with any updates from this conversation</div>
+    </div>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
