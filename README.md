@@ -1,7 +1,3 @@
-# DIY Companion Wireframe Testing Questions
-
-Use these prompts during user interviews to evaluate usability, clarity, trust, and flow quality across the wireframes.
-
 ## UI/UX Questions for User Testing
 
 I want you to click through this app and tell me what you think it does.
