@@ -1,68 +1,52 @@
 ## UI/UX Questions for User Testing
 
-I want you to click through this app and tell me what you think it does.
+### Introduction
 
-Lets return to the home page, what do you think this app / page does?
+Before we begin, I want to check that you’re comfortable taking part in this session and that you consent to us recording it. Thank you.
 
-"Before you click 'Start Project', what do you expect the app to show you next? Click the start project button. Does the actual result match that expectation?"
+Just to be clear, we’re testing the design, not you. There are no right or wrong answers here.
 
-Are the projects displayed intuitive? Can you identify which project hasn't been started yet?
+Please share whatever you’re thinking as you go, and feel free to be completely honest. In fact, critical feedback is the most valuable feedback you can give us, because it helps us improve the experience
 
-Let's start a project. If you were to assess if someone was capable of doing a DIY project, what information would you ask?
+### Background questions
 
-This app asks what the project is, a photo and the user's skill level. What other important pieces of information would you think would be helpeful in assessing whether the user has the capability of completing this DIY project?
+To start, I’d like to ask a few quick background questions to understand your experience with DIY and home repairs.
 
-On a scale of 1-5, how much do you trust the app's assessment that this project is within your skill level? Why or why not?
+- Have you done any home repairs or DIY projects recently?
+- How did you go about planning them?
+- What, if anything, was frustrating about that process?
+- What is your 'first point of call' when something breaks at home? Asking a friend? Calling a handyman? YouTube?
 
-If the app tells you that you are 'Intermediate' but you feel like a 'Beginner,' which one would you trust more?
+We are asking these questions help us understand whether your experience is closer to someone who wants to do DIY but isn’t fully confident yet, or someone who enjoys DIY but gets slowed down by planning, organization, and details involved with DIY projects
 
-Let's assess our ability for a door handle replacement. The app says its well within our abilities. What skills would a user need to be able to perform a door handle replacement? What questions should this application ask in assessing the ability to complete a DIY project such as a door handle repair?
+### The task
 
-Does the project plan page look intuitive?
+For this task, imagine this: you’ve got a loose, wobbly door handle that’s starting to get harder to turn. You’re not sure if this is something simple you can fix yourself, or if the whole handle needs replacing. I’d like you to use this app to figure out what you should do next.
 
-By navigating the app, can you find instructions on how to disassemble the door handle?
+If the app recommends a DIY fix, please go ahead and explore the repair plan it gives you, and also check the parts list.
 
-If you were having difficulties disassembling the door handle, where would you go to in the app to get help?
+During this task, I want you to think out loud and explain what you see, why you clicked a particular button and what your thoughts are of the responses given by the app/
 
-If we return to the plan overview page, what parts and tools would we need to complete the project?
+To help you, here are some things we would like feedback on
+- First, whether the chat-style input feels natural and easy to use.
+- Second, whether the assessment feels clear and trustworthy.
+- Third, whether moving between the plan and parts views feels smooth.
+- And finally, whether the connection between the assessment, the plan, and the parts makes sense to you.
 
-Does the steps shown in stage detail make sense? Do you think this would be helpful? What if you were stuck, where would you go in the app to get help?
+### Debrief
 
-Click the potential hazards button. Does the terminology here make sense to you?
+I will ask some questions about your experience
 
-What information on this screen makes you feel 'safe' to proceed, and what makes you feel hesitant?
+- In your own words, what does this app do?
+- If this app existed, would you use it? Why or why not?
+- Compared to just searching for a 'How-to' video on YouTube or asking ChatGPT, what did this app provide that felt different or more helpful?
 
-Move to the safety view. Whilst performing a step in a DIY repair, the app has detected a potential safety concern. After seeing this screen, what action would you do next? Do you think this safety concerns page is useful or scary?
+- What was confusing, if anything?
+- Was there a point where you weren't sure what the app wanted you to do?
+- Were there any specific words or labels in the app that felt could be worded better? Anything that didn't immediately click in a DIY context?
 
-The ask page is an AI companion where the user can ask for more focussed help. Do you think it is helpful? If we return to the home page, do you know where you would press to ask for help?
+- When the app told you the repair was 'well within your abilities,' did you believe it? What information on the screen helped you trust that assessment (or made you doubt it)
+- How did you feel when the app flagged a safety concern? Did it make you feel more confident that the app was 'watching your back,' or did it make you want to stop the project entirely?
+- How did you feel about it telling you whether to DIY or call a professional; would you be okay with being told a task is too hard for you?
 
-Let's return to the home page
-
-Are there any icons or labels on the Home Page that feel ambiguous or could have multiple meanings
-
-If we return to the home page, can you tell me what type of screws are needed?
-
-If we return to the home page, can you tell me how long approximately this door handle replacement would take?
-
-Can you give feedback on this applications. What improvements would you make? 
-
-What are some issues you can identify with the application? Here are some examples we have identified:
-
-- Part availability needs to be manually updated each time
-- Difficult to gauage self-assess ability (you might think you can't do it when you can)
-- Application might not offer anything different to existing apps / chatGPT
-- Steps and help given is too generic
-
-I will list some of the features we have considered in improving the app and can you tell us which ones you think we should focus on first?
-
-- Questionnaire to gauge user's skill
-- A catalogue of DIY projects for user's to select from
-- A camera mode where the user can point at something and an assistant will provide contextualised tips
-- A social sharing system where users can create communities, share their DIY projects and compare with others
-
-If the app gave you 'Home Repair experience points' or a badge for fixing your door handle, would that motivate you to try a harder project, or does it feel 'silly'?
-
-If you were to use the 'Ask' AI feature, would you prefer it to give you a step-by-step list or a conversational chat?
-
-Think of the last time you had a broken item at home but didn't fix it. Would this app have been enough to get you over that barrier, or is there a specific hurdle (like tool cost or fear of breaking it further) that the app isn't addressing
-
+- Was there anything you'd want an app like this to do that this one didn't?
