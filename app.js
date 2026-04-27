@@ -301,4 +301,12 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.tab-item').forEach(el => {
     el.addEventListener('click', () => navigate(el.dataset.screen));
   });
+
+  const facilitatorModal = document.getElementById('facilitatorModal');
+  const facilitatorClose = document.getElementById('facilitatorClose');
+  if (facilitatorModal && facilitatorClose) {
+    facilitatorClose.addEventListener('click', () => {
+      facilitatorModal.classList.add('hidden');
+    });
+  }
 });
