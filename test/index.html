@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiny WebLLM</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="chat-container">
+        <header>
+            <h1>DIY Helper</h1>
+            <div class="status-bar">
+                <span id="status">Waiting for user...</span>
+                <progress id="progress-bar" value="0" max="100" style="display:none;"></progress>
+            </div>
+        </header>
+        
+        <div id="chat-log" class="chat-log">
+            <div class="message ai">Ready. Select "Tiny Qwen" for the fastest experience.</div>
+        </div>
+
+        <div class="input-area">
+            <select id="model-selection">
+                <option value="Qwen2-0.5B-Instruct-q4f16_1-MLC">Tiny Qwen (0.5B - ~300MB)</option>
+                <option value="SmolLM-135M-Instruct-q4f16_1-MLC">SmolLM (135M - Ultra Tiny)</option>
+            </select>
+            <textarea id="user-input" placeholder="Type a message..." rows="1" disabled></textarea>
+            <button id="send-btn" disabled>Send</button>
+        </div>
+    </div>
+    <script type="module" src="script.js"></script>
+</body>
+</html>
